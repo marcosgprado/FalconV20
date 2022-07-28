@@ -32,7 +32,7 @@ public class NoteController {
 
     @GetMapping
     public ResponseEntity<List<Note>> list(){
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        
         return ResponseEntity.ok(noteService.listAll());
     }
 
@@ -41,14 +41,8 @@ public class NoteController {
         return ResponseEntity.ok(noteService.findByIdOrThrowBadRequestException(id));
     }
     
-    /*
-    @GetMapping(path = "/find/{descricao}")
-    public ResponseEntity<List<Note>> findByDescricao(@PathVariable String descricao){
-        return ResponseEntity.ok(noteService.findByDescricao(descricao));
-    }
-    */
-    ///*
-    @GetMapping(path = "/find") //teste ->  localhost:8080/notes/find?descricao=vaio_15
+   
+    @GetMapping(path = "/find") //  10.20.0.5:8080/notes/find?descricao=vaio_15
     public ResponseEntity<List<Note>> findByDescricao(@RequestParam String descricao){
         return ResponseEntity.ok(noteService.findByDescricao(descricao));
     }
